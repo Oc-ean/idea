@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashBoardController;
 use App\Http\Controllers\FollowController;
@@ -39,15 +40,16 @@ Route::get('profile', [UserController::class, 'profile'])->middleware('auth')->n
 Route::post('users/{user}/follow', [FollowController::class, 'follow'])->middleware('auth')->name('users.follow');
 
 Route::post('users/{user}/unfollow', [FollowController::class, 'unfollow'])->middleware('auth')->name('users.unfollow');
-// Route::get('/register', [AuthController::class, 'registerUser'])->name('register');
 
-// Route::post('/register', [AuthController::class, 'store']);
+Route::get('/register', [AuthController::class, 'registerUser'])->name('register');
 
-// Route::get('/login', [AuthController::class, 'signinUser'])->name('login');
+Route::post('/register', [AuthController::class, 'store']);
 
-// Route::post('/login', [AuthController::class, 'authenticate']);
+Route::get('/login', [AuthController::class, 'signinUser'])->name('login');
 
-// Route::post('/logout', [AuthController::class, 'signoutUser'])->name('logout');
+Route::post('/login', [AuthController::class, 'authenticate']);
+
+Route::post('/logout', [AuthController::class, 'signoutUser'])->name('logout');
 
 // Route::post('/{action}', [IdeaController::class, 'action'])->name('form.action');
 
@@ -55,6 +57,7 @@ Route::post('users/{user}/unfollow', [FollowController::class, 'unfollow'])->mid
 Route::get('/terms', function () {
     return view('terms');
 });
+
 // Route::get('/dashboard', function () {
 //     // $idea = new Idea([
 //     //     'content' => 'test',

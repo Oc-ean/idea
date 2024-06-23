@@ -1,17 +1,21 @@
 
 <?php
+
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/register', [AuthController::class, 'registerUser'])->name('register');
+// Route::get('/register', [AuthController::class, 'registerUser'])->name('register');
 
-Route::post('/register', [AuthController::class, 'store']);
+// Route::post('/register', [AuthController::class, 'store']);
 
-Route::get('/login', [AuthController::class, 'signinUser'])->name('login');
+// Route::get('/login', [AuthController::class, 'signinUser'])->name('login');
 
-Route::post('/login', [AuthController::class, 'authenticate']);
+// Route::post('/login', [AuthController::class, 'authenticate']);
 
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+// Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
+
 // use App\Http\Controllers\Auth\AuthenticatedSessionController;
 // use App\Http\Controllers\Auth\ConfirmablePasswordController;
 // use App\Http\Controllers\Auth\EmailVerificationNotificationController;

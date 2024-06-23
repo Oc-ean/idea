@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Idea;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +20,7 @@ class AuthController extends Controller
     public function store()
     {
         //validate
-        // $ideas = Idea::all();
+        $ideas = Idea::paginate(10);
         // dd($ideas);
         $validateData = request()->validate(
             [
@@ -36,7 +37,7 @@ class AuthController extends Controller
         ]);
 
         // dd($user);
-        return view('dashboard')->with('success', 'Idea deleted successfully!');
+        return view('dashboard', compact('ideas'))->with('success', 'Idea deleted successfully!');
     }
 
     public function signinUser()
@@ -44,24 +45,22 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    public function authenticate()
+    public function authenticate(Request $request)
     {
-        $validated = request()->validate(
-            [
-                'email' => 'required|email',
-                'password' => 'required|min:8',
-            ]
-        );
+        $validated = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:8',
+        ]);
 
-        if (auth()->attempt($validated)) {
-            request()->session()->regenerate();
+        if (Auth::attempt($validated)) {
+            $request->session()->regenerate();
 
-            return view('dashboard')->with('success', 'Logged in successfully!');
+            return redirect()->intended('dashboard')->with('success', 'Logged in successfully!');
         }
 
-        return redirect()->route('login')->withErrors([
-            'email' => "No matching user found with the provided email and password",
-        ]);
+        return back()->withErrors([
+            'email' => 'No matching user found with the provided email and password',
+        ])->onlyInput('email');
     }
     // if (Auth::attempt($validateData)) {
     //     request()->session()->regenerate();
