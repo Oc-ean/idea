@@ -47,20 +47,22 @@ class AuthController extends Controller
 
     public function authenticate(Request $request)
     {
-        $validated = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|min:8',
-        ]);
+        $validated = request()->validate(
+            [
+                'email' => 'required|email',
+                'password' => 'required|min:8',
+            ]
+        );
+        // dd($validated);
+        if (auth()->attempt($validated)) {
+            request()->session()->regenerate();
 
-        if (Auth::attempt($validated)) {
-            $request->session()->regenerate();
-
-            return redirect()->intended('dashboard')->with('success', 'Logged in successfully!');
+            return view('dashboard')->with('success', 'Logged in successfully!');
         }
 
-        return back()->withErrors([
-            'email' => 'No matching user found with the provided email and password',
-        ])->onlyInput('email');
+        return redirect()->route('login')->withErrors([
+            'email' => "No matching user found with the provided email and password",
+        ]);
     }
     // if (Auth::attempt($validateData)) {
     //     request()->session()->regenerate();
