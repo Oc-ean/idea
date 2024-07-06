@@ -1,4 +1,6 @@
 @include('layouts.layout')
+@section('tittle', 'Register')
+
 <div class="container m-1">
     <div class="row justify-content-center">
         <div class="col-md-6 col-sm-8">

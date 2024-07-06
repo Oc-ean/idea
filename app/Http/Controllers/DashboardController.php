@@ -12,11 +12,14 @@ class DashBoardController extends Controller
         // $ideas = Idea::when(request()->has('search'), function ($query) {
         //     $query->search(request('search', ''));
         // })->orderBy('created_at', 'DESC')->paginate(5);
-        $ideas = Idea::orderBy('created_at', 'DESC');
-        if (request()->has('search')) {
-            $search = request('search', '');
-            $ideas = $ideas->where('content', 'like', "%{$search}%");
-        }
+
+        $ideas = Idea::when(request('search', ''), function ($query) {
+            $query->search(request('search', ''));
+        })->orderBy('created_at', 'DESC');
+
+        // ideas count
+
+        // $topUsers = User::withCount('ideas')->orderBy('ideas_count', 'DESC')->limit(5)->get();
 
         return view('dashboard', [
             'ideas' => $ideas->paginate(5),

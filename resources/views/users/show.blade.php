@@ -1,4 +1,6 @@
 @extends('layouts/layout')
+@section('tittle', $user->name)
+
 
 
 @section('dashboard-content')
@@ -11,16 +13,15 @@
             <div class="mt-3">
                 @include('shared.user_card')
             </div>
+            <hr>
             <h6>All ideas</h6>
-            @if (count($ideas) > 0)
-                @foreach ($ideas as $idea)
-                    <div class="mt-3">
-                        @include('shared.idea_card')
-                    </div>
-                @endforeach
-            @else
-                <p class="text-center">No Result found</p>
-            @endif
+            @forelse ($ideas as $idea)
+                <div class="mt-3">
+                    @include('ideas.shared.idea_card')
+                </div>
+            @empty
+                <p class="text-center mt-4">No results Found.</p>
+            @endforelse
             <div class= "mt-3">
                 {{ $ideas->withQueryString()->links() }}
             </div>
@@ -29,4 +30,5 @@
             @include('shared.search_bar')
             @include('shared.follow_box')
         </div>
-    @endsection
+    </div>
+@endsection

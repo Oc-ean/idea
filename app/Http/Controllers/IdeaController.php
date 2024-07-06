@@ -24,6 +24,7 @@ class IdeaController extends Controller
     }
     public function store()
     {
+
         try {
             $data = $this->validateRequest();
 
@@ -31,6 +32,11 @@ class IdeaController extends Controller
             $data['image'] = $this->handleImageUpload();
 
             $idea = Idea::create($data);
+
+            $responseData = [
+                "message" => "Idea created successfully!",
+                "idea" => $idea->toArray(),
+            ];
 
             return redirect()->route('dashboard')->with('success', 'Idea created successfully!');
         } catch (\Exception $e) {

@@ -1,6 +1,6 @@
 @extends('layouts.layout')
+@section('tittle', 'Feeds')
 
-@section('tittle', 'Dashboard')
 
 @section('dashboard-content')
     <div class="row">
@@ -8,8 +8,7 @@
             @include('shared.side_bar')
         </div>
         <div class="col-6">
-            @include('shared.success_message')
-            @include('shared.create_dialog')
+            <h5>Your feeds</h5>
             <hr>
             {{-- @if (count($ideas) > 0)
                 @foreach ($ideas as $idea)
@@ -20,6 +19,7 @@
             @else
                 <p class="text-center">No Result found</p>
             @endif --}}
+            {{-- <h6>All ideas</h6> --}}
             @forelse ($ideas as $idea)
                 <div class="mt-3">
                     @include('ideas.shared.idea_card')
@@ -37,34 +37,3 @@
         </div>
     </div>
 @endsection
-
-
-
-{{-- @section('content')
-    <div class="row">
-        <div class="col-3">
-            @include('shared.side_bar')
-        </div>
-        <div class="col-6">
-            @include('shared.success_message')
-            @include('shared.create_dialog')
-            <hr>
-            @if (count($ideas) > 0)
-                @foreach ($ideas as $idea)
-                    <div class="mt-3">
-                        @include('ideas.shared.idea_card')
-                    </div>
-                @endforeach
-            @else
-                <p class="text-center">No Result found</p>
-            @endif
-            <div class="mt-3">
-                {{ $ideas->withQueryString()->links() }}
-            </div>
-        </div>
-        <div class="col-3">
-            @include('shared.search_bar')
-            @include('shared.follow_box')
-        </div>
-    </div>
-@endsection --}}

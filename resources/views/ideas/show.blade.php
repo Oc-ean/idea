@@ -1,4 +1,6 @@
 @extends('layouts.layout')
+@section('tittle', 'Edit')
+
 
 @section('dashboard-content')
     <div class="row">
@@ -55,7 +57,7 @@
                     </div>
                 </div>
 
-                @include('shared.idea_card')
+                @include('ideas.shared.idea_card')
             </div>
 
             <div class= "mt-3"></div>
@@ -67,7 +69,7 @@
     </div>
 @endsection
 
-<script src="https://code.jquery.com/jquery-3.6.3.min.js"
+{{-- <script src="https://code.jquery.com/jquery-3.6.3.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <link href="https://bootswatch.com/5/sketchy/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
@@ -76,4 +78,4 @@
 <!-- Bootstrap JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
-</script>
+</script> --}}

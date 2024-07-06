@@ -1,4 +1,5 @@
 @extends('layouts/layout')
+@section('tittle', 'Edit Profile')
 
 
 @section('dashboard-content')
@@ -11,11 +12,11 @@
             <div class="mt-3">
                 @include('shared.user_edit_card')
             </div>
-            <h6>All ideas</h6>
+            <h6 class="mt-2">All ideas</h6>
             @if (count($ideas) > 0)
                 @foreach ($ideas as $idea)
                     <div class="mt-3">
-                        @include('shared.idea_card')
+                        @include('ideas.shared.idea_card')
                     </div>
                 @endforeach
             @else
